@@ -104,24 +104,24 @@ if job.savedata.deconv_save  || any(conndata_flag~=1)
         if flag_parfor
             parfor ii=1:nvar
                 hrf=hrfa_TR(:,ii);
-                data_deconv(:,ii) = rsHRF_iterative_wiener_deconv(zscore(data_nuisancerm(:,ii)),hrf./sigma(ii),num_iterations);
+                data_deconv(:,ii) = rsHRF_iterative_wiener_deconv(zscore(data_nuisancerm(:,ii)),hrf./sigma(ii),'TR',para.TR,'MaxIter',num_iterations);
             end
         else
             for ii=1:nvar
                 hrf=hrfa_TR(:,ii);
-                data_deconv(:,ii) = rsHRF_iterative_wiener_deconv(zscore(data_nuisancerm(:,ii)),hrf./sigma(ii),num_iterations);
+                data_deconv(:,ii) = rsHRF_iterative_wiener_deconv(zscore(data_nuisancerm(:,ii)),hrf./sigma(ii),'TR',para.TR,'MaxIter',num_iterations);
             end
         end
     elseif job.HRFE.hrfdeconv==2
         if flag_parfor
             parfor ii=1:nvar
                 hrf=hrfa_TR(:,ii);
-                data_deconv(:,ii) = rsHRF_iterative_wiener_deconv(zscore(data(:,ii)),hrf./sigma(ii),num_iterations);
+                data_deconv(:,ii) = rsHRF_iterative_wiener_deconv(zscore(data(:,ii)),hrf./sigma(ii),'TR',para.TR,'MaxIter',num_iterations);
             end
         else
             for ii=1:nvar
                 hrf=hrfa_TR(:,ii);
-                data_deconv(:,ii) = rsHRF_iterative_wiener_deconv(zscore(data(:,ii)),hrf./sigma(ii),num_iterations);
+                data_deconv(:,ii) = rsHRF_iterative_wiener_deconv(zscore(data(:,ii)),hrf./sigma(ii),'TR',para.TR,'MaxIter',num_iterations);
             end
         end
 
