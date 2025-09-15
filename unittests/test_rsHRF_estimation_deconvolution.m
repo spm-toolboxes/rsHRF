@@ -80,9 +80,10 @@ for bf_id = 1:length(BF)
     end
     hrf=hrfa_TR;
 
-    data_deconv = rsHRF_iterative_wiener_deconv(data,hrf,10,1);
+    data_deconv = rsHRF_iterative_wiener_deconv(data,hrf,'TR',TR);
 
     % Unit Tests for rsHRF_iterative_wiener_deconv
     testCase.verifyThat(data_deconv, HasSize(size(data)));
+
 
 end
