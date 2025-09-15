@@ -65,14 +65,14 @@ else
 end
 hrf=hrfa_TR;
 
-flag_deconv_raw = 1; 
+flag_deconv_raw = 0; 
 if flag_deconv_raw %HRF deconvolution with raw/filtered data
     zdata = bold_sig; zscore(bold_sig);
 else
     zdata =  zscore(data);
 end
-% data_deconv = rsHRF_iterative_wiener_deconv(zdata,hrf./sigma);
-data_deconv = rsHRF_iterative_wiener_deconv(zdata,hrf,10);
+
+data_deconv = rsHRF_iterative_wiener_deconv(zdata,hrf,'TR',TR);
 
 event_number=length(event_bold{1,1});
 toc
@@ -84,6 +84,11 @@ event_plot=nan(1,nobs);
 event_plot(event_bold{1,1})=1;
 figure(1);plot((1:length(hrfa(:,1)))*TR/para.T,hrfa(:,1),'b');xlabel('Time (s)')
 title(['HRF (',BF{bf_id},')'])
-figure(2);plot((1:nobs)*TR,zscore(data(:,1)));
+figure(2);
+if flag_deconv_raw
+    plot((1:nobs)*TR,zscore(bold_sig(:,1)));
+else
+    plot((1:nobs)*TR,zscore(data(:,1)));
+end
 hold on;plot((1:nobs)*TR,zscore(data_deconv(:,1)),'r');
 stem((1:nobs)*TR,event_plot,'k');legend('BOLD','Deconvolved BOLD','BOLD events');xlabel('Time (s)')
