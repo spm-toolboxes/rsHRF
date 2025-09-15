@@ -1,4 +1,15 @@
 code SPM plugin - additions and modifications to v1.0:
+
+------ v2.5, 202509 ----------- 
+Update rsHRF_iterative_wiener_deconv.m
+  - Replaced old positional arguments with new Name-Value pairs.
+  - Iterative Noise Estimation.
+  - Adjusted preprocessing to account for mean-centering inside the function.
+  - Ensured compatibility with auto Smooth/LowPass recommendations.
+  - Removed obsolete code relying on fixed iteration control.
+
+----------------------- 
+
 ------ v2.4, 202106 ----------- 
 Add a unit test.
 Add stop crition for iterations (rsHRF_iterative_wiener_deconv.m). 
